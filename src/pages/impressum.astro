@@ -1,0 +1,36 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { SITE_NAME, PHONE, PHONE_HREF, EMAIL, ADDRESS_STREET, ADDRESS_CITY } from '../config';
+---
+
+<LegalLayout title="Impressum">
+  <h2>Kontakt</h2>
+  <p>
+    {SITE_NAME}<br />
+    {ADDRESS_STREET}<br />
+    {ADDRESS_CITY}<br />
+    Schweiz
+  </p>
+  <p>
+    Telefon: <a href={PHONE_HREF}>{PHONE}</a><br />
+    E-Mail: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+  </p>
+
+  <h2>Unternehmensform</h2>
+  <p>
+    <!-- CUSTOMIZE: Einzelfirma / GmbH / AG -->
+    Einzelfirma / GmbH<br />
+    UID: CHE-XXX.XXX.XXX
+  </p>
+
+  <h2>Haftungsausschluss</h2>
+  <p>
+    Die Inhalte dieser Website werden mit grösster Sorgfalt erstellt. Der Anbieter übernimmt jedoch keine Gewähr für die
+    Richtigkeit, Vollständigkeit und Aktualität der bereitgestellten Inhalte.
+  </p>
+  <p>
+    Links zu externen Websites wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstösse überprüft. Rechtswidrige
+    Inhalte waren nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist ohne konkrete
+    Anhaltspunkte einer Rechtsverletzung nicht zumutbar.
+  </p>
+</LegalLayout>

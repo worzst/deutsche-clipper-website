@@ -1,0 +1,122 @@
+---
+import SectionHeading from './SectionHeading.astro';
+
+interface Question {
+  q: string;
+  a: string;
+}
+interface Props {
+  questions?: Question[];
+  label?: string;
+  heading?: string;
+  headingEm?: string;
+  align?: 'left' | 'center';
+}
+
+const defaultQuestions: Question[] = [
+  {
+    q: 'Wie läuft die Zusammenarbeit ab?',
+    a: 'Hier kommt die Antwort auf die häufigste erste Frage Ihrer Kunden.',
+  },
+  {
+    q: 'Was kostet der Service?',
+    a: 'Transparente Preisgestaltung ohne versteckte Kosten — beschreiben Sie Ihr Modell hier.',
+  },
+  {
+    q: 'Wie schnell sind Sie einsatzbereit?',
+    a: 'Antwort zur Reaktionszeit und Verfügbarkeit.',
+  },
+  {
+    q: 'Welche Garantien bieten Sie?',
+    a: 'Beschreiben Sie Ihre Garantien und wie Sie im Problemfall vorgehen.',
+  },
+];
+
+const {
+  questions = defaultQuestions,
+  label = 'FAQ',
+  heading = 'Häufige Fragen,',
+  headingEm = 'klar beantwortet.',
+  align = 'center',
+} = Astro.props;
+---
+
+<section id="faq" class="section">
+  <div class="inner">
+    <SectionHeading label={label} heading={heading} headingEm={headingEm} mb={64} align={align} />
+
+    <div id="faqList" class="max-w-[800px] mx-auto">
+      {
+        questions.map((f, i) => (
+          <div
+            class:list={[
+              'faq-item mb-2.5 px-[26px] py-[22px] rounded-lg border border-[var(--line)] cursor-pointer',
+              i === 0 ? 'open' : 'closed',
+            ]}
+          >
+            <div class="flex justify-between items-center gap-5">
+              <div class="text-[clamp(15px,1.3vw,18px)] font-semibold tracking-[-0.02em]">{f.q}</div>
+              <button
+                class="toggle w-8 h-8 rounded-full shrink-0 inline-flex items-center justify-center leading-none text-lg border-none cursor-pointer bg-accent text-white transition-all duration-250"
+                aria-label="Antwort ein-/ausblenden"
+              >
+                +
+              </button>
+            </div>
+            <div class="answer text-[15px] leading-relaxed">{f.a}</div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item.closed {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+  .faq-item.open {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border-color: transparent;
+  }
+  .faq-item.open .toggle {
+    transform: rotate(45deg);
+  }
+  /* max-height transition can't be done with Tailwind */
+  .answer {
+    overflow: hidden;
+    transition:
+      max-height 0.35s,
+      opacity 0.3s,
+      margin-top 0.25s;
+  }
+  .faq-item.closed .answer {
+    max-height: 0;
+    opacity: 0;
+    margin-top: 0;
+  }
+  .faq-item.open .answer {
+    max-height: 300px;
+    opacity: 0.8;
+    margin-top: 12px;
+  }
+</style>
+
+<script>
+  const items = document.querySelectorAll('#faqList .faq-item');
+  items.forEach((item) => {
+    item.addEventListener('click', () => {
+      const wasOpen = item.classList.contains('open');
+      items.forEach((i) => {
+        i.classList.remove('open');
+        i.classList.add('closed');
+      });
+      if (!wasOpen) {
+        item.classList.add('open');
+        item.classList.remove('closed');
+      }
+    });
+  });
+</script>

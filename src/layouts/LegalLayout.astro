@@ -1,0 +1,67 @@
+---
+import Layout from './Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_NAME } from '../config';
+
+interface Props {
+  title: string;
+}
+const { title } = Astro.props;
+---
+
+<Layout title={`${title} — ${SITE_NAME}`} noindex={true}>
+  <Nav />
+  <main class="pb-24">
+    <div class="legal-inner pt-12">
+      <a
+        href="/"
+        class="inline-block text-[13px] text-mute underline underline-offset-[3px] mb-8 hover:text-ink transition-colors"
+      >
+        ← Zurück
+      </a>
+      <h1 class="text-[clamp(28px,4vw,44px)] font-extrabold tracking-[-0.03em] text-ink m-0 mb-10">{title}</h1>
+      <div class="legal-content">
+        <slot />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  .legal-inner {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .legal-content :global(h2) {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 40px 0 12px;
+  }
+  .legal-content :global(p),
+  .legal-content :global(li) {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--color-mute);
+    margin: 0 0 12px;
+  }
+  .legal-content :global(a) {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .legal-content :global(ul) {
+    list-style: disc;
+    padding-left: 20px;
+  }
+  .legal-content :global(code) {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    background: var(--line);
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+</style>

@@ -1,0 +1,26 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_NAME } from '../config';
+---
+
+<Layout title={`Seite nicht gefunden — ${SITE_NAME}`} noindex={true}>
+  <Nav />
+  <section class="min-h-[70vh] flex items-center justify-center px-[var(--gutter)] py-[var(--section-pad)]">
+    <div class="max-w-[480px] text-center">
+      <span class="block font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-accent mb-6">404</span>
+      <h1 class="text-[clamp(32px,5vw,56px)] font-extrabold tracking-[-0.04em] text-ink m-0 mb-4">
+        Diese Seite gibt es nicht.
+      </h1>
+      <p class="text-[17px] text-mute leading-relaxed m-0 mb-10">Die URL existiert nicht — aber wir schon.</p>
+      <a
+        href="/"
+        class="inline-flex items-center leading-none px-7 py-[14px] rounded-full bg-accent text-white text-[15px] font-semibold hover:opacity-85 transition-opacity"
+      >
+        Zur Startseite →
+      </a>
+    </div>
+  </section>
+  <Footer />
+</Layout>

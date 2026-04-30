@@ -1,0 +1,78 @@
+---
+import { SITE_KEY } from '../config';
+// Derived from SITE_KEY in config.ts — no need to change this file per project.
+const CONSENT_KEY = `${SITE_KEY}_consent`;
+---
+
+<div
+  id="cookieBanner"
+  class="fixed bottom-0 left-0 right-0 z-[200] bg-paper border-t border-[var(--line)] px-8 py-4 hidden items-center justify-between gap-6 flex-wrap"
+  role="dialog"
+  aria-label="Cookie-Einstellungen"
+>
+  <p class="m-0 text-[13px] text-mute leading-relaxed">
+    Wir nutzen Cookies zur Analyse und Optimierung unserer Website.
+    <a href="/datenschutz" class="text-ink underline underline-offset-[3px]">Mehr erfahren</a>
+  </p>
+  <div class="flex gap-2.5 shrink-0">
+    <button
+      id="cookieDecline"
+      class="inline-flex items-center leading-none px-5 py-2.5 rounded-full text-[13px] font-semibold bg-transparent text-mute border border-[var(--line)] cursor-pointer hover:border-ink hover:text-ink transition-colors"
+    >
+      Ablehnen
+    </button>
+    <button
+      id="cookieAccept"
+      class="inline-flex items-center leading-none px-5 py-2.5 rounded-full text-[13px] font-semibold bg-accent text-white border-none cursor-pointer hover:opacity-85 transition-opacity"
+    >
+      Akzeptieren
+    </button>
+  </div>
+</div>
+
+<style>
+  @media (max-width: 480px) {
+    #cookieBanner {
+      padding: 16px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>
+
+<script is:inline define:vars={{ CONSENT_KEY }}>
+  const banner = document.getElementById('cookieBanner');
+
+  function updateConsent(granted) {
+    const val = granted ? 'granted' : 'denied';
+    if (typeof gtag !== 'undefined') {
+      gtag('consent', 'update', {
+        ad_storage: val,
+        ad_user_data: val,
+        ad_personalization: val,
+        analytics_storage: val,
+      });
+    }
+  }
+
+  const stored = localStorage.getItem(CONSENT_KEY);
+  if (stored === 'granted') {
+    updateConsent(true);
+  } else if (!stored) {
+    banner.classList.remove('hidden');
+    banner.classList.add('flex');
+  }
+
+  document.getElementById('cookieAccept').addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'granted');
+    updateConsent(true);
+    banner.classList.add('hidden');
+    banner.classList.remove('flex');
+  });
+  document.getElementById('cookieDecline').addEventListener('click', () => {
+    localStorage.setItem(CONSENT_KEY, 'denied');
+    updateConsent(false);
+    banner.classList.add('hidden');
+    banner.classList.remove('flex');
+  });
+</script>

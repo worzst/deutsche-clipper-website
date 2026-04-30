@@ -1,0 +1,147 @@
+---
+import CookieBanner from '../components/CookieBanner.astro';
+import GTM from '../components/GTM.astro';
+import '../styles/global.css';
+import { SITE_NAME } from '../config';
+
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  ogImage?: string;
+  schema?: Record<string, unknown>;
+}
+
+const {
+  title = SITE_NAME,
+  description = '', // CUSTOMIZE: add default meta description
+  noindex = false,
+  ogImage = '/og-default.png',
+  schema,
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const ogImageUrl = new URL(ogImage, Astro.site).href;
+const gtmId = (import.meta.env.PUBLIC_GTM_ID ?? '').trim();
+const turnstileSiteKey = (import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '').trim();
+const schemaStr = schema ? JSON.stringify(schema) : null;
+---
+
+<!doctype html>
+<html lang="de-CH">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:locale" content="de_CH" />
+    <meta property="og:site_name" content={SITE_NAME} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    {noindex && <meta name="robots" content="noindex,nofollow" />}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    {schemaStr && <Fragment set:html={`<script type="application/ld+json">${schemaStr}</script>`} />}
+
+    <!-- Consent Mode v2 defaults — must run before GTM -->
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        // eslint-disable-next-line prefer-rest-params -- GTM requires the Arguments object; rest params would break Consent Mode
+        dataLayer.push(arguments);
+      }
+      // EEA + UK + CH: consent required by law
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        analytics_storage: 'denied',
+        wait_for_update: 500,
+        region: [
+          'AT',
+          'BE',
+          'BG',
+          'CH',
+          'CY',
+          'CZ',
+          'DE',
+          'DK',
+          'EE',
+          'ES',
+          'FI',
+          'FR',
+          'GB',
+          'GR',
+          'HR',
+          'HU',
+          'IE',
+          'IS',
+          'IT',
+          'LI',
+          'LT',
+          'LU',
+          'LV',
+          'MT',
+          'NL',
+          'NO',
+          'PL',
+          'PT',
+          'RO',
+          'SE',
+          'SI',
+          'SK',
+        ],
+      });
+      // All other regions: grant by default
+      gtag('consent', 'default', {
+        ad_storage: 'granted',
+        ad_user_data: 'granted',
+        ad_personalization: 'granted',
+        analytics_storage: 'granted',
+      });
+    </script>
+
+    {gtmId && <GTM id={gtmId} />}
+  </head>
+  <body>
+    {
+      gtmId && (
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+            height="0"
+            width="0"
+            style="display:none;visibility:hidden"
+          />
+        </noscript>
+      )
+    }
+
+    <slot />
+    <CookieBanner />
+
+    {turnstileSiteKey && <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer />}
+  </body>
+</html>
+
+<script>
+  // Scroll reveal — add class="reveal" (+ optional data-delay="100") to any element
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in');
+          observer.unobserve(e.target);
+        }
+      });
+    },
+    { threshold: 0.1 },
+  );
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>

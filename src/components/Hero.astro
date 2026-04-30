@@ -1,0 +1,35 @@
+---
+import { PHONE, PHONE_HREF } from '../config';
+---
+
+<section class="hero-gradient text-white py-[clamp(80px,12vw,140px)]">
+  <div class="inner">
+    <div class="max-w-[680px]">
+      <p class="reveal text-[13px] font-semibold tracking-[0.1em] uppercase opacity-70 mb-5">
+        Ihr Fachbetrieb in Basel
+      </p>
+      <h1 class="reveal text-[clamp(40px,7vw,80px)] font-black leading-[0.95] tracking-[-0.04em] mb-6" data-delay="80">
+        Headline, die<br />
+        <em class="italic opacity-75">Kunden überzeugt.</em>
+      </h1>
+      <p class="reveal text-[clamp(16px,2vw,20px)] leading-[1.5] opacity-80 mb-10 max-w-[520px]" data-delay="160">
+        Kurze Beschreibung des Angebots. Was macht dieses Unternehmen besonders? Vertrauen aufbauen, Nutzen klar
+        benennen.
+      </p>
+      <div class="reveal flex gap-3 flex-wrap" data-delay="240">
+        <a
+          href={PHONE_HREF}
+          class="inline-flex items-center leading-none px-8 py-4 rounded-full bg-white text-accent text-base font-extrabold hover:opacity-90 transition-opacity"
+        >
+          {PHONE}
+        </a>
+        <a
+          href="#kontakt"
+          class="inline-flex items-center leading-none px-8 py-4 rounded-full border-2 border-white/40 text-white text-base font-bold hover:border-white/80 transition-colors"
+        >
+          Kostenlos anfragen
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

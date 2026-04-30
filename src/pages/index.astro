@@ -1,0 +1,123 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Faq from '../components/Faq.astro';
+import LeadForm from '../components/LeadForm.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import {
+  PHONE,
+  PHONE_HREF,
+  EMAIL,
+  SITE_NAME,
+  ADDRESS_STREET,
+  ADDRESS_CITY,
+  AREA_SERVED,
+  OPENING_HOURS,
+  SCHEMA_TYPE,
+} from '../config';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': SCHEMA_TYPE,
+  name: SITE_NAME,
+  telephone: PHONE,
+  email: EMAIL,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: ADDRESS_STREET,
+    addressLocality: ADDRESS_CITY,
+    addressCountry: 'CH',
+  },
+  areaServed: AREA_SERVED,
+  openingHours: OPENING_HOURS,
+  // Uncomment once you have real Google reviews:
+  // aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '12' },
+};
+---
+
+<Layout
+  title="Firmenname — Kurzslogan"
+  description="Meta-Beschreibung für Google. Ca. 150 Zeichen. Enthält Hauptkeyword und Standort."
+  schema={schema}
+>
+  <Nav />
+  <Hero />
+
+  <!-- LEISTUNGEN — add your services section here -->
+  <section id="leistungen" class="section">
+    <div class="inner">
+      <SectionHeading label="Leistungen" heading="Was wir für Sie tun," headingEm="von Anfang bis Ende." />
+      <div class="grid-3">
+        {
+          ['Leistung 1', 'Leistung 2', 'Leistung 3'].map((s) => (
+            <div class="reveal bg-paper border border-[var(--line)] rounded-lg p-8">
+              <h3 class="text-lg font-bold m-0 mb-3 text-ink">{s}</h3>
+              <p class="text-sm leading-relaxed text-mute m-0">
+                Kurze Beschreibung dieser Leistung. Was ist der Nutzen für den Kunden?
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ÜBER UNS -->
+  <section id="ueber" class="section section-alt">
+    <div class="inner">
+      <SectionHeading label="Über uns" heading="Wer hinter dem" headingEm="Betrieb steckt." align="left" />
+      <p class="max-w-[560px] leading-[1.7] text-mute">
+        Kurze, persönliche Vorstellung. Erfahrung, Region, Werte. 2–3 Sätze genügen.
+      </p>
+    </div>
+  </section>
+
+  <Faq />
+
+  <!-- KONTAKT -->
+  <section id="kontakt" class="section bg-ink text-white">
+    <div class="inner contact-grid">
+      <div>
+        <h2 class="text-[clamp(32px,5vw,56px)] font-extrabold tracking-[-0.04em] m-0 mb-6">Jetzt Kontakt aufnehmen</h2>
+        <p class="opacity-60 leading-relaxed m-0 mb-8 max-w-[380px]">
+          Wir melden uns innerhalb eines Werktages bei Ihnen.
+        </p>
+        <a href={PHONE_HREF} class="block text-xl font-bold text-white mb-2.5">{PHONE}</a>
+        <a href={`mailto:${EMAIL}`} class="block text-[15px] text-white/50">{EMAIL}</a>
+      </div>
+      <div>
+        <LeadForm
+          id="main"
+          source="Hauptseite"
+          theme="dark"
+          fields={[
+            { type: 'text', name: 'name', placeholder: 'Ihr Name', required: true },
+            { type: 'tel', name: 'tel', placeholder: 'Telefonnummer', required: true },
+            { type: 'email', name: 'email', placeholder: 'E-Mail-Adresse' },
+            { type: 'textarea', name: 'message', placeholder: 'Ihr Anliegen (optional)', rows: 3 },
+          ]}
+          submitLabel="Anfrage senden"
+        />
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+</style>

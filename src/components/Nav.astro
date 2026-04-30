@@ -1,0 +1,114 @@
+---
+import { SITE_NAME, PHONE, PHONE_HREF } from '../config';
+
+interface Props {
+  activePage?: string;
+}
+const { activePage } = Astro.props;
+
+const currentPath = activePage ?? Astro.url.pathname;
+const base = currentPath === '/' ? '' : '/';
+
+const links = [
+  { href: `${base}#leistungen`, label: 'Leistungen' },
+  { href: `${base}#ueber`, label: 'Über uns' },
+  { href: `${base}#faq`, label: 'FAQ' },
+  { href: `${base}#kontakt`, label: 'Kontakt' },
+];
+
+const isActive = (href: string) => !href.includes('#') && href === currentPath;
+---
+
+<header class="sticky top-0 z-50 bg-paper border-b border-[var(--line)]">
+  <div class="nav-inner flex items-center gap-8 h-16">
+    <a href="/" class="text-lg font-extrabold tracking-[-0.04em] text-ink shrink-0" aria-label={SITE_NAME}>
+      {SITE_NAME}
+    </a>
+
+    <nav class="hidden md:flex gap-6 flex-1" aria-label="Hauptnavigation">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class:list={[
+              'text-sm font-medium transition-colors duration-150',
+              isActive(l.href) ? 'text-ink font-bold' : 'text-mute hover:text-ink',
+            ]}
+            aria-current={isActive(l.href) ? 'page' : undefined}
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="hidden md:flex items-center gap-4 shrink-0">
+      <a href={PHONE_HREF} class="text-sm font-semibold text-ink">{PHONE}</a>
+      <a
+        href={`${base}#kontakt`}
+        class="inline-flex items-center leading-none px-5 py-2.5 rounded-full bg-accent text-white text-sm font-bold hover:opacity-85 transition-opacity"
+      >
+        Jetzt anfragen
+      </a>
+    </div>
+
+    <button
+      class="md:hidden ml-auto flex flex-col gap-[5px] p-1 bg-transparent border-none cursor-pointer"
+      id="hamburger"
+      aria-label="Menü öffnen"
+      aria-expanded="false"
+    >
+      <span class="block w-[22px] h-[2px] bg-ink rounded-sm transition-all duration-250"></span>
+      <span class="block w-[22px] h-[2px] bg-ink rounded-sm transition-all duration-250"></span>
+      <span class="block w-[22px] h-[2px] bg-ink rounded-sm transition-all duration-250"></span>
+    </button>
+  </div>
+
+  <nav
+    class="hidden flex-col px-[var(--gutter)] pt-4 pb-6 border-t border-[var(--line)] gap-1"
+    id="mobileMenu"
+    aria-hidden="true"
+  >
+    {
+      links.map((l) => (
+        <a href={l.href} class="py-3 text-base font-medium text-ink border-b border-[var(--line)]">
+          {l.label}
+        </a>
+      ))
+    }
+    <a
+      href={`${base}#kontakt`}
+      class="flex items-center justify-center leading-none mt-4 py-[14px] px-5 rounded-full bg-accent text-white text-[15px] font-bold"
+    >
+      Jetzt anfragen
+    </a>
+  </nav>
+</header>
+
+<style>
+  .nav-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+</style>
+
+<script>
+  const btn = document.getElementById('hamburger')!;
+  const menu = document.getElementById('mobileMenu')!;
+  btn.addEventListener('click', () => {
+    const isOpen = !menu.classList.contains('hidden');
+    menu.classList.toggle('hidden', isOpen);
+    menu.classList.toggle('flex', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
+    menu.setAttribute('aria-hidden', String(isOpen));
+  });
+  menu.querySelectorAll('a').forEach((a) => {
+    a.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      menu.classList.remove('flex');
+      btn.setAttribute('aria-expanded', 'false');
+      menu.setAttribute('aria-hidden', 'true');
+    });
+  });
+</script>
