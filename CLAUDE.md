@@ -1,7 +1,122 @@
-# Website Template — Build Guide
+# Deutsche Clipper — Build Guide
 
-> This is the canonical knowledge base for building Astro websites with this template.
+> This is the canonical knowledge base for the Deutsche Clipper site.
 > Read this before touching any file. Update it at the end of any session with significant changes.
+
+---
+
+## Project Overview
+
+Deutsche Clipper is a marketplace connecting German video editors ("Clipper") with content creators ("Creator"). The site has two landing pages for the Beta launch, both driving waitlist/beta sign-ups:
+
+- `/` — Clipper page (gold accent `#FFCC00`, dark text on accent)
+- `/creator` — Creator page (red accent `#E30613`, white text on accent)
+
+**Fonts:** Bebas Neue (display/headings) + DM Sans (body) via Google Fonts CDN in Layout.astro.
+
+**Per-page accent color:** Set via `accentColor` and `accentTextColor` props on `<Layout>`. These are applied as `--dc-accent` and `--dc-accent-text` CSS custom properties on `<body>` inline style, cascading to all child components.
+
+**Forms:** Both landing pages use custom inline forms (not `LeadForm`) to match the cut-corner clip-path design. Both use `wireForm()` from `formSubmit.ts` and POST to `/contact`. Include `_hp` honeypot and `_source` hidden field in any new form.
+
+---
+
+## Site-Specific Components
+
+These replace the generic template defaults (the original Nav, Footer, etc. were deleted — these are the canonical components for this site).
+
+### Nav
+
+```typescript
+interface Props {
+  page: 'clipper' | 'creator';
+}
+```
+
+Fixed nav: transparent → `rgba(8,8,8,0.92)` + blur on scroll > 40px. Left: Logo. Right: cross-link + "Beta-Zugang" button. Button uses `var(--dc-accent)` / `var(--dc-accent-text)`. Cross-link goes to the other page.
+
+### Footer
+
+```typescript
+interface Props {
+  page: 'clipper' | 'creator';
+}
+```
+
+Simple dark footer. Logo + nav links (cross-link to other page, Impressum, Datenschutz) + copyright.
+
+### Logo
+
+```typescript
+interface Props {
+  size?: number;    // default 28 — SVG height in px
+  linkTo?: string;  // default '/'
+}
+```
+
+German flag SVG (3 stripes: near-black / red / gold) with "DC" text + "DEUTSCHE CLIPPER" in Bebas Neue.
+
+### Ticker
+
+No props. Full-width scrolling ticker banner for the Creator page. Items alternate accent-colored at each cycle start. Uses `dc-ticker` CSS animation from `global.css`.
+
+---
+
+## DC Design Tokens
+
+| CSS Var | Value | Usage |
+|---------|-------|-------|
+| `--dc-accent` | `#FFCC00` (clipper) / `#E30613` (creator) | Accent color per page, set on body |
+| `--dc-accent-text` | `#080808` (clipper) / `#ffffff` (creator) | Text on accent bg |
+
+Global dark theme tokens in `@theme` in `global.css`:
+- `--color-bg: #080808`
+- `--color-ink: #f0f0f0`
+- `--color-mute: rgba(255,255,255,0.55)`
+- `--color-accent: #FFCC00` (gold default)
+- `--color-accent-2: #E30613` (red)
+- `--line: rgba(255,255,255,0.08)`
+- `--font-sans: 'DM Sans', system-ui, ...`
+
+Keyframes in `@layer base` in `global.css`: `dc-fade-up`, `dc-pulse`, `dc-ticker`.
+
+---
+
+## DC Page Sections (CSS patterns used in pages)
+
+### Hero
+- `min-height: 100vh`, grid background (60×60px CSS grid lines at ~2.5% opacity)
+- Radial gradient glow using `color-mix(in srgb, var(--dc-accent) 13%, transparent)` animated with `dc-pulse`
+- Staggered `dc-fade-up` animations on hero elements (`.anim-0` through `.anim-4`)
+- Clipper page: typographic hero with `CLIP IT. / CASH / IT.` — gold "CASH" + outlined " IT."
+- Creator page: badge with animated dot, `MEHR VIEWS. / WENIGER (outlined in red) / AUFWAND. (red)` + diagonal stripe bg
+
+### Cut-corner buttons
+```css
+clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+```
+Used on primary CTAs and form submit buttons.
+
+### Section headings (DC style)
+```html
+<div class="dc-label">Label text</div>
+<h2 class="dc-h2">HEADING<br /><span class="dc-hl">ACCENT PART</span></h2>
+```
+`dc-label`: 12px DM Sans, 700 weight, 4px letter-spacing, accent color, uppercase.
+`dc-h2`: Bebas Neue, `clamp(44–48px, 5–6vw, 72–80px)`, line-height 0.95.
+`dc-hl`: `color: var(--dc-accent)`.
+
+### Benefit cards hover
+```css
+.card:hover {
+  border-color: color-mix(in srgb, var(--dc-accent) 40%, transparent);
+  background: color-mix(in srgb, var(--dc-accent) 5%, transparent);
+}
+```
+
+### Waitlist forms
+Clipper: combined email+button in a clip-path container with `:focus-within` border animation.
+Creator: stacked inputs (`.dc-input`) with sharp borders + full-width cut-corner submit button.
+Both: `id="...Form"`, `id="...Success"`, `id="...Error"`, `id="...Label"` for `wireForm()`.
 
 ---
 
@@ -28,7 +143,7 @@ npm run preview   # preview build locally
 
 When starting a new site from this template, do these before writing any content:
 
-1. **`src/config.ts`** — fill in `SITE_KEY`, `SITE_NAME`, `PHONE`, `PHONE_HREF`, `EMAIL`, `ADDRESS_STREET`, `ADDRESS_CITY`
+1. **`src/config.ts`** — fill in `SITE_KEY`, `SITE_NAME`, `EMAIL`
 2. **`src/styles/global.css`** — swap `--color-accent` and `--color-accent-2` for project palette (inside `@theme {}`)
 3. **`astro.config.mjs`** — replace `YOURDOMAIN.ch` with actual domain
 4. **`public/robots.txt`** — replace `YOURDOMAIN.ch` with actual domain
@@ -43,13 +158,13 @@ When starting a new site from this template, do these before writing any content
 
 ```
 src/
-  config.ts               # shared constants — SITE_KEY, PHONE, EMAIL, SITE_NAME, ADDRESS_*
+  config.ts               # shared constants — SITE_KEY, SITE_NAME, EMAIL
   env.d.ts                # TypeScript globals — Window.dataLayer, gtag, turnstile
   layouts/
     Layout.astro          # HTML shell: meta tags, GTM + Consent Mode v2, CookieBanner, reveal observer
     LegalLayout.astro     # legal pages: back link, prose styles, noindex
   pages/
-    index.astro           # main page — assembles all sections, passes schema prop to Layout
+    index.astro           # Clipper landing page
     404.astro             # custom 404 with Nav + Footer, noindex
     danke.astro           # thank-you page for server-side redirect pattern, noindex
     impressum.astro       # imprint (noindex via LegalLayout)
@@ -377,33 +492,7 @@ Configured in `Layout.astro`. Consent defaults run **before** GTM loads.
 - OG tags: `og:title`, `og:description`, `og:url`, `og:locale: de_CH`, `og:site_name`, `og:image`, `twitter:card: summary_large_image`
 - OG image: place `og-default.png` (1200×630px) in `/public/`. Override per-page with `<Layout ogImage="/og-custom.png">`.
 
-**Schema.org** — pass a `schema` object to `Layout.astro`:
-
-```astro
----
-const schema = {
-  '@context': 'https://schema.org',
-  '@type': SCHEMA_TYPE, // e.g. 'Plumber', 'LocalBusiness', 'HVACBusiness'
-  name: SITE_NAME,
-  telephone: PHONE,
-  email: EMAIL,
-  address: {
-    '@type': 'PostalAddress',
-    streetAddress: ADDRESS_STREET,
-    addressLocality: ADDRESS_CITY,
-    addressCountry: 'CH',
-  },
-  areaServed: AREA_SERVED,
-  openingHours: OPENING_HOURS,
-  // Uncomment once real Google reviews exist:
-  // aggregateRating: { '@type': 'AggregateRating', ratingValue: '5.0', reviewCount: '12' },
-};
----
-
-<Layout title="..." description="..." schema={schema} />
-```
-
-`Layout.astro` injects it as `<script type="application/ld+json">` via `Fragment set:html` — safe from Prettier reformatting. All values come from `src/config.ts`. Only add `aggregateRating` once you have real reviews.
+**Schema.org** — not used on this site (platform/marketplace, not a local business). The `schema` prop exists on `Layout.astro` for future use if needed.
 
 ---
 
@@ -500,7 +589,7 @@ Browse all icons: tabler.io/icons
 **Shared config import:**
 
 ```typescript
-import { PHONE, PHONE_HREF, EMAIL, SITE_NAME } from '../config';
+import { EMAIL, SITE_NAME } from '../config';
 ```
 
 ---

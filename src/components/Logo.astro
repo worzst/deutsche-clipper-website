@@ -1,0 +1,43 @@
+---
+interface Props {
+  size?: number;
+  linkTo?: string;
+}
+const { size = 28, linkTo = '/' } = Astro.props;
+const svgWidth = Math.round(size * 1.4);
+const nameSize = Math.round(size * 0.65);
+---
+
+<a href={linkTo} class="dc-logo" style={`--name-size: ${nameSize}px`}>
+  <svg width={svgWidth} height={size} viewBox="0 0 56 40" fill="none">
+    <rect x="0" y="0" width="56" height="13.3" fill="#080808" stroke="#444" stroke-width="0.5" />
+    <rect x="0" y="13.3" width="56" height="13.3" fill="#E30613" />
+    <rect x="0" y="26.6" width="56" height="13.4" fill="#FFCC00" />
+    <text
+      x="28"
+      y="26"
+      text-anchor="middle"
+      font-family="'Bebas Neue', sans-serif"
+      font-size="22"
+      fill="white"
+      letter-spacing="1">DC</text
+    >
+  </svg>
+  <span class="dc-logo-name">DEUTSCHE CLIPPER</span>
+</a>
+
+<style>
+  .dc-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .dc-logo-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: var(--name-size, 18px);
+    letter-spacing: 2px;
+    color: #f0f0f0;
+    white-space: nowrap;
+  }
+</style>

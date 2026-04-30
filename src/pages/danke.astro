@@ -1,16 +1,12 @@
 ---
-// Post-form redirect target — alternative to the inline AJAX success state.
-// Use this when the contact form POSTs to a server route that redirects here,
-// rather than using the default AJAX submit in LeadForm.
-// Redirect after form submit (server-side): return Response.redirect('/danke', 303)
 import Layout from '../layouts/Layout.astro';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_NAME } from '../config';
 ---
 
-<Layout title={`Vielen Dank — ${SITE_NAME}`} noindex={true}>
-  <Nav />
+<Layout title={`Vielen Dank — ${SITE_NAME}`} noindex={true} accentColor="#FFCC00" accentTextColor="#080808">
+  <Nav page="clipper" />
   <section class="min-h-[70vh] flex items-center justify-center px-[var(--gutter)] py-[var(--section-pad)]">
     <div class="max-w-[480px] text-center">
       <div
@@ -19,18 +15,18 @@ import { SITE_NAME } from '../config';
         ✓
       </div>
       <h1 class="text-[clamp(28px,4vw,44px)] font-extrabold tracking-[-0.03em] text-ink m-0 mb-4">
-        Vielen Dank für Ihre Anfrage!
+        Vielen Dank!
       </h1>
       <p class="text-[17px] text-mute leading-relaxed m-0 mb-10">
-        Wir haben Ihre Nachricht erhalten und melden uns innerhalb eines Werktages bei Ihnen.
+        Wir haben deine Anmeldung erhalten und melden uns in Kürze bei dir.
       </p>
       <a
         href="/"
-        class="inline-flex items-center leading-none px-7 py-[14px] rounded-full bg-accent text-white text-[15px] font-semibold hover:opacity-85 transition-opacity"
+        class="inline-flex items-center leading-none px-7 py-[14px] rounded-full bg-accent text-[var(--dc-accent-text)] text-[15px] font-semibold hover:opacity-85 transition-opacity"
       >
         Zurück zur Startseite
       </a>
     </div>
   </section>
-  <Footer />
+  <Footer page="clipper" />
 </Layout>

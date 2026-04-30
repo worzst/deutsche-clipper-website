@@ -1,55 +1,64 @@
 ---
-import { SITE_NAME, PHONE, PHONE_HREF, EMAIL, ADDRESS_STREET, ADDRESS_CITY } from '../config';
-import ObfuscatedEmail from './ObfuscatedEmail.astro';
+import Logo from './Logo.astro';
+import { SITE_NAME } from '../config';
+
+interface Props {
+  page: 'clipper' | 'creator';
+}
+const { page } = Astro.props;
+
+const crossLink =
+  page === 'clipper'
+    ? { href: '/creator', label: 'Für Creator' }
+    : { href: '/', label: 'Für Clipper' };
 ---
 
-<footer class="bg-ink text-paper pt-16">
-  <div class="footer-inner">
-    <div>
-      <span class="block text-lg font-extrabold tracking-[-0.04em] mb-3">{SITE_NAME}</span>
-      <address class="not-italic text-sm leading-relaxed text-white/50">
-        {ADDRESS_STREET}<br />
-        {ADDRESS_CITY}
-      </address>
-    </div>
-
-    <div class="flex flex-col gap-2.5 pt-1">
-      <a href={PHONE_HREF} class="text-sm text-white/55 hover:text-white transition-colors">{PHONE}</a>
-      <ObfuscatedEmail email={EMAIL} class="text-sm text-white/55 hover:text-white transition-colors" />
-    </div>
-
-    <nav class="flex flex-col gap-2.5 pt-1" aria-label="Rechtliches">
-      <a href="/impressum" class="text-sm text-white/55 hover:text-white transition-colors">Impressum</a>
-      <a href="/datenschutz" class="text-sm text-white/55 hover:text-white transition-colors">Datenschutz</a>
-    </nav>
-  </div>
-
-  <div class="footer-bottom">
-    <p class="text-xs text-white/30">&copy; {new Date().getFullYear()} {SITE_NAME}</p>
-  </div>
+<footer class="dc-footer">
+  <Logo size={22} />
+  <nav class="dc-footer-links" aria-label="Footer-Navigation">
+    <a href={crossLink.href}>{crossLink.label}</a>
+    <a href="/impressum">Impressum</a>
+    <a href="/datenschutz">Datenschutz</a>
+  </nav>
+  <p class="dc-footer-copy">© {new Date().getFullYear()} {SITE_NAME}</p>
 </footer>
 
 <style>
-  .footer-inner {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--gutter) 48px;
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 40px;
+  .dc-footer {
+    padding: 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
   }
-  .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.08);
-    padding: 20px var(--gutter);
+  .dc-footer-links {
+    display: flex;
+    gap: 32px;
   }
-  .footer-bottom p {
-    max-width: var(--max-width);
-    margin: 0 auto;
+  .dc-footer-links a {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.35);
+    transition: color 0.2s;
+  }
+  .dc-footer-links a:hover {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .dc-footer-copy {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.2);
+    margin: 0;
   }
   @media (max-width: 640px) {
-    .footer-inner {
-      grid-template-columns: 1fr;
-      gap: 32px;
+    .dc-footer {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 32px 20px;
+    }
+    .dc-footer-links {
+      flex-wrap: wrap;
+      gap: 20px;
     }
   }
 </style>

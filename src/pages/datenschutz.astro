@@ -1,27 +1,28 @@
 ---
 import LegalLayout from '../layouts/LegalLayout.astro';
-import { SITE_NAME, EMAIL, ADDRESS_STREET, ADDRESS_CITY } from '../config';
+import { SITE_NAME, EMAIL } from '../config';
 ---
 
 <LegalLayout title="Datenschutzerklärung">
   <p>
-    Diese Datenschutzerklärung informiert Sie über die Verarbeitung personenbezogener Daten auf dieser Website gemäss
-    dem Schweizer Datenschutzgesetz (DSG) und, soweit anwendbar, der Europäischen Datenschutz-Grundverordnung (DSGVO).
+    Diese Datenschutzerklärung informiert über die Verarbeitung personenbezogener Daten auf dieser Website gemäss der
+    Europäischen Datenschutz-Grundverordnung (DSGVO) sowie dem Schweizer Datenschutzgesetz (DSG).
   </p>
 
   <h2>Verantwortlicher</h2>
   <p>
-    {SITE_NAME}<br />
-    {ADDRESS_STREET}<br />
-    {ADDRESS_CITY}<br />
+    ictira GmbH<br />
+    Aufgendsweg 3<br />
+    4455 Zunzgen<br />
+    Schweiz<br />
     E-Mail: <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
   </p>
 
-  <h2>Kontaktformular</h2>
+  <h2>Warteliste & Bewerbungsformular</h2>
   <p>
-    Wenn Sie uns über das Kontaktformular kontaktieren, speichern wir Ihre Angaben (Name, Telefon, E-Mail, Nachricht)
-    zur Bearbeitung Ihrer Anfrage und für eventuelle Rückfragen. Die Daten werden nicht ohne Ihre Einwilligung an Dritte
-    weitergegeben. E-Mails werden über den Dienst
+    Wenn du dich über das Formular für die Warteliste oder als Creator bewirbst, speichern wir deine Angaben (Name,
+    E-Mail, ggf. Plattform-Handle) zur Bearbeitung deiner Anfrage. Die Daten werden nicht ohne deine Einwilligung an
+    Dritte weitergegeben. E-Mails werden über den Dienst
     <strong>Resend</strong> (Resend Inc., USA) versendet.
   </p>
 
@@ -33,21 +34,21 @@ import { SITE_NAME, EMAIL, ADDRESS_STREET, ADDRESS_CITY } from '../config';
 
   <h2>Analyse &amp; Tracking</h2>
   <p>
-    Mit Ihrer Einwilligung verwenden wir <strong>Google Analytics 4</strong> via Google Tag Manager zur Analyse des Nutzerverhaltens.
-    Tracking-Cookies werden erst nach ausdrücklicher Einwilligung gesetzt (Consent Mode v2). Sie können Ihre Einwilligung
+    Mit deiner Einwilligung verwenden wir <strong>Google Analytics 4</strong> via Google Tag Manager zur Analyse des Nutzerverhaltens.
+    Tracking-Cookies werden erst nach ausdrücklicher Einwilligung gesetzt (Consent Mode v2). Du kannst deine Einwilligung
     jederzeit durch Löschen der Browser-Cookies widerrufen.
   </p>
 
   <h2>Cookies</h2>
   <p>
-    Wir setzen ausschliesslich ein technisch notwendiges Cookie zur Speicherung Ihrer Cookie-Einwilligung (<code
-      >site_consent</code
+    Wir setzen ausschliesslich ein technisch notwendiges Cookie zur Speicherung deiner Cookie-Einwilligung (<code
+      >dc_consent</code
     >). Analyse-Cookies werden nur nach Einwilligung gesetzt.
   </p>
 
-  <h2>Ihre Rechte</h2>
+  <h2>Deine Rechte</h2>
   <p>
-    Sie haben das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung Ihrer personenbezogenen
-    Daten. Wenden Sie sich dazu an uns via E-Mail.
+    Du hast das Recht auf Auskunft, Berichtigung, Löschung und Einschränkung der Verarbeitung deiner personenbezogenen
+    Daten. Wende dich dazu per E-Mail an uns.
   </p>
 </LegalLayout>

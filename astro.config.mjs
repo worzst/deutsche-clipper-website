@@ -4,7 +4,7 @@ import icon from 'astro-icon';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://www.YOURDOMAIN.ch', // CUSTOMIZE: replace with actual domain
+  site: 'https://www.deutscheclipper.de',
   vite: {
     plugins: [tailwindcss()],
   },

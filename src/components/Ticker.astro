@@ -1,0 +1,56 @@
+---
+const items = [
+  'Mehr Reichweite',
+  'Virales Wachstum',
+  'Professionelle Clipper',
+  'Einfache Abrechnung',
+  'Nur bei Erfolg',
+  'DSGVO-konform',
+  'Made in Germany',
+];
+const doubled = [...items, ...items];
+---
+
+<div class="dc-ticker-wrap" aria-hidden="true">
+  <div class="dc-ticker-track">
+    {
+      doubled.map((item, i) => (
+        <span class:list={['dc-ticker-item', i % items.length === 0 && 'dc-ticker-item--accent']}>
+          {item}
+          <span class="dc-ticker-sep">·</span>
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .dc-ticker-wrap {
+    overflow: hidden;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    background: rgba(255, 255, 255, 0.02);
+    padding: 12px 0;
+  }
+  .dc-ticker-track {
+    display: flex;
+    width: max-content;
+    animation: dc-ticker 20s linear infinite;
+  }
+  .dc-ticker-item {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 15px;
+    letter-spacing: 3px;
+    color: rgba(255, 255, 255, 0.25);
+    padding: 0 40px;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .dc-ticker-item--accent {
+    color: var(--dc-accent);
+  }
+  .dc-ticker-sep {
+    margin-left: 40px;
+    color: rgba(255, 255, 255, 0.1);
+  }
+</style>

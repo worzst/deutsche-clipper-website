@@ -5,8 +5,8 @@ import Footer from '../components/Footer.astro';
 import { SITE_NAME } from '../config';
 ---
 
-<Layout title={`Seite nicht gefunden — ${SITE_NAME}`} noindex={true}>
-  <Nav />
+<Layout title={`Seite nicht gefunden — ${SITE_NAME}`} noindex={true} accentColor="#FFCC00" accentTextColor="#080808">
+  <Nav page="clipper" />
   <section class="min-h-[70vh] flex items-center justify-center px-[var(--gutter)] py-[var(--section-pad)]">
     <div class="max-w-[480px] text-center">
       <span class="block font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-accent mb-6">404</span>
@@ -22,5 +22,5 @@ import { SITE_NAME } from '../config';
       </a>
     </div>
   </section>
-  <Footer />
+  <Footer page="clipper" />
 </Layout>

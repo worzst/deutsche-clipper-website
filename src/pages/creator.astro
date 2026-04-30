@@ -1,0 +1,791 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import Ticker from '../components/Ticker.astro';
+
+const steps = [
+  {
+    num: '01',
+    title: 'Profil erstellen',
+    desc: 'Beschreibe deinen Kanal und Content. Wir matchen dich mit passenden Clippern aus unserem Netzwerk.',
+  },
+  {
+    num: '02',
+    title: 'Clips genehmigen',
+    desc: 'Alle Clips landen zur Freigabe in deinem Dashboard. Volle Kontrolle über deinen Content.',
+  },
+  {
+    num: '03',
+    title: 'Wachsen & abrechnen',
+    desc: 'Deine Clips verbreiten sich. Du bezahlst nur für echte Views — direkt über die Plattform abgerechnet.',
+  },
+];
+
+const benefits = [
+  {
+    title: 'Nur für Erfolg zahlen',
+    desc: 'Kein Monatsabo, keine Agenturgebühren. Du zahlst ausschließlich pro 1.000 organische Views — keine versteckten Kosten.',
+  },
+  {
+    title: 'Kuratierte Clipper',
+    desc: 'Nur verifizierte, erfahrene Clipper kommen ins Netzwerk. Dein Content ist in professionellen Händen.',
+  },
+  {
+    title: 'Vollständiges Management',
+    desc: 'Vertragsabwicklung, Abrechnung, Kommunikation — alles über eine zentrale Plattform. Kein E-Mail-Chaos.',
+  },
+  {
+    title: 'Volle Content-Kontrolle',
+    desc: 'Jeder Clip muss von dir freigegeben werden, bevor er veröffentlicht wird. Du behältst die Kontrolle.',
+  },
+  {
+    title: 'Deutsche Creator & Clipper',
+    desc: 'Gezielt für den deutschen Markt. Sprache, Humor und Content-Kultur passen zueinander.',
+  },
+  {
+    title: 'Skalierbar',
+    desc: 'Ein Creator. Zehn Creator. Hundert. Die Plattform wächst mit deinen Anforderungen.',
+  },
+];
+
+const checklist = [
+  'Zugang zu einem verifizierten Clipper-Netzwerk',
+  'Kostenloses Onboarding & Setup',
+  'Beta-Pricing — günstigere Konditionen als später',
+  'Direkter Kontakt zum Gründerteam',
+];
+
+---
+
+<Layout
+  title="Deutsche Clipper — Für Creator | Mehr Views, weniger Aufwand"
+  description="Professionelle Clipper verwandeln deinen Long-Form Content in virale Kurzvideos. Du zahlst nur für echte Views — kein Festpreis."
+  accentColor="#E30613"
+  accentTextColor="#ffffff"
+>
+  <Nav page="creator" />
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-stripe"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-grid"></div>
+
+    <div class="hero-inner">
+      <div class="badge anim-0">
+        <span class="badge-dot"></span>
+        Creator Beta jetzt offen
+      </div>
+
+      <h1 class="h1 anim-1">
+        MEHR VIEWS.<br />
+        <span class="h1-outline">WENIGER</span><br />
+        <span class="h1-red">AUFWAND.</span>
+      </h1>
+
+      <div class="subtext anim-2">
+        <p class="subtext-left">
+          Professionelle Clipper verwandeln deinen Long-Form Content in <strong>virale Kurzvideos</strong> — für
+          TikTok, Reels & Shorts.
+        </p>
+        <div class="subtext-right">
+          <p>
+            Du zahlst nur für echte Performance: <strong>pro 1.000 Views</strong>, nicht pauschal.
+            Abrechnung, Verträge und Management läuft über uns.
+          </p>
+          <a href="#waitlist" class="btn-primary anim-3">Jetzt als Creator bewerben</a>
+        </div>
+      </div>
+
+      <div class="stats anim-4">
+        <div class="stat">
+          <div class="stat-val">0 €</div>
+          <div class="stat-lbl">Fixkosten</div>
+          <div class="stat-sub">nur Pay-per-View</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">+300%</div>
+          <div class="stat-lbl">Mehr Content</div>
+          <div class="stat-sub">aus deinen Videos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-val">48h</div>
+          <div class="stat-lbl">Erste Clips</div>
+          <div class="stat-sub">nach Freigabe</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Ticker />
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="dc-section">
+    <div class="dc-inner">
+      <div class="hiw-grid">
+        <div class="hiw-left reveal">
+          <div class="dc-label">Ablauf</div>
+          <h2 class="dc-h2">
+            SO<br /><span class="dc-hl">EINFACH</span><br />GEHT'S
+          </h2>
+          <p class="hiw-desc">
+            Von der Anmeldung bis zu den ersten viralen Clips — in weniger als 48 Stunden.
+          </p>
+        </div>
+
+        <div class="hiw-steps">
+          {
+            steps.map((step, i) => (
+              <div
+                class:list={['hiw-step', i % 2 === 0 && 'hiw-step--bg', 'reveal']}
+                data-delay={i > 0 ? String(i * 80) : undefined}
+              >
+                <div class="hiw-step-icon">
+                  <span class="hiw-step-num">{step.num}</span>
+                </div>
+                <div>
+                  <h3 class="hiw-step-title">{step.title}</h3>
+                  <p class="hiw-step-body">{step.desc}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BENEFITS ── -->
+  <section class="dc-section dc-section--alt">
+    <div class="dc-inner">
+      <div class="reveal">
+        <h2 class="dc-h2">ALLES WAS DU<br /><span class="dc-hl">BRAUCHST</span></h2>
+      </div>
+      <div class="benefits-grid">
+        {
+          benefits.map((b, i) => (
+            <div class="benefit-card reveal" data-delay={i % 3 === 0 ? undefined : i % 3 === 1 ? '100' : '200'}>
+              <h3 class="benefit-title">{b.title}</h3>
+              <p class="benefit-body">{b.desc}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WAITLIST / APPLICATION ── -->
+  <section id="waitlist" class="dc-section">
+    <div class="dc-inner">
+      <div class="apply-grid">
+        <div class="reveal">
+          <div class="dc-label">Creator Beta</div>
+          <h2 class="dc-h2">JETZT<br />BEWERBEN</h2>
+          <p class="apply-copy">
+            Wir nehmen in der Beta eine begrenzte Anzahl an Creatorn auf. Bewirb dich jetzt und sei
+            dabei wenn die Plattform startet.
+          </p>
+          <ul class="checklist">
+            {
+              checklist.map((item) => (
+                <li class="check-item">
+                  <span class="check-icon">✓</span>
+                  <span class="check-text">{item}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="reveal" data-delay="100">
+          <form id="creatorForm" action="/contact" method="POST" class="apply-form">
+            <input type="text" name="_hp" class="dc-hp" tabindex="-1" autocomplete="off" />
+            <input type="hidden" name="_source" value="Creator Bewerbung" />
+
+            <input
+              type="text"
+              name="name"
+              placeholder="Dein Name / Kanal-Name"
+              class="dc-input"
+            />
+            <input
+              type="email"
+              name="email"
+              placeholder="deine@email.de"
+              required
+              class="dc-input"
+            />
+            <input
+              type="text"
+              name="platform"
+              placeholder="Hauptplattform (z.B. YouTube, Twitch...)"
+              class="dc-input"
+            />
+
+            <button type="submit" class="apply-btn">
+              <span id="creatorLabel">Als Creator anmelden</span>
+            </button>
+
+            <p class="form-disclaimer">Kein Spam · DSGVO-konform · Jederzeit abmeldbar</p>
+
+            <div class="cross-link-block">
+              <p class="cross-link-label">DU BIST EIN CLIPPER?</p>
+              <a href="/" class="cross-link">Zur Clipper-Anmeldung →</a>
+            </div>
+
+            <p id="creatorError" class="form-error">
+              Etwas ist schiefgelaufen. Bitte versuche es erneut.
+            </p>
+          </form>
+
+          <div id="creatorSuccess" class="form-success">
+            <div class="success-title">🎉 BEWERBUNG ERHALTEN!</div>
+            <p class="success-body">
+              Wir melden uns zeitnah bei dir. Creators werden manuell geprüft — du hörst von uns
+              sobald du freigeschaltet bist.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer page="creator" />
+</Layout>
+
+<style>
+  /* ── Hero ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    padding: 100px var(--gutter) 60px;
+  }
+  .hero-stripe {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45%;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.015);
+    clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+  .hero-glow {
+    position: absolute;
+    top: 10%;
+    left: -5%;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(
+      circle,
+      color-mix(in srgb, var(--dc-accent) 10%, transparent) 0%,
+      transparent 65%
+    );
+    pointer-events: none;
+    z-index: 0;
+    animation: dc-pulse 5s ease-in-out infinite;
+  }
+  .hero-grid {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .anim-0 {
+    animation: dc-fade-up 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+  .anim-1 {
+    animation: dc-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s both;
+  }
+  .anim-2 {
+    animation: dc-fade-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+  }
+  .anim-3 {
+    animation: dc-fade-up 0.8s ease 0.35s both;
+  }
+  .anim-4 {
+    animation: dc-fade-up 0.8s ease 0.5s both;
+  }
+
+  .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid color-mix(in srgb, var(--dc-accent) 33%, transparent);
+    color: var(--dc-accent);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    padding: 7px 16px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+  }
+  .badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--dc-accent);
+    animation: dc-pulse 1.5s ease-in-out infinite;
+    flex-shrink: 0;
+  }
+
+  .h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(60px, 7.5vw, 120px);
+    line-height: 0.92;
+    letter-spacing: 2px;
+    color: #f0f0f0;
+    margin: 0;
+  }
+  .h1-outline {
+    -webkit-text-stroke: 2px var(--dc-accent);
+    color: transparent;
+  }
+  .h1-red {
+    color: var(--dc-accent);
+  }
+
+  .subtext {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    align-items: start;
+    margin-top: 36px;
+  }
+  .subtext p {
+    font-size: 19px;
+    font-weight: 300;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0 0 28px;
+  }
+  .subtext-left {
+    padding-right: 48px;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+  .subtext-right {
+    padding-left: 48px;
+  }
+  .subtext strong {
+    color: #f0f0f0;
+    font-weight: 500;
+  }
+  .subtext-right strong {
+    color: var(--dc-accent);
+    font-weight: 600;
+  }
+
+  .btn-primary {
+    background: var(--dc-accent);
+    color: var(--dc-accent-text);
+    padding: 16px 36px;
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 12px) 0,
+      100% 12px,
+      100% 100%,
+      12px 100%,
+      0 calc(100% - 12px)
+    );
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover {
+    opacity: 0.85;
+  }
+
+  .stats {
+    margin-top: 72px;
+    display: flex;
+    gap: 64px;
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    flex-wrap: wrap;
+  }
+  .stat-val {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    color: var(--dc-accent);
+    letter-spacing: 1px;
+  }
+  .stat-lbl {
+    font-size: 13px;
+    color: #f0f0f0;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .stat-sub {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 2px;
+  }
+
+  /* ── Shared ── */
+  .dc-section {
+    padding: var(--section-pad) 0;
+  }
+  .dc-section--alt {
+    background: rgba(255, 255, 255, 0.015);
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .dc-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .dc-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    color: var(--dc-accent);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .dc-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(44px, 5vw, 72px);
+    letter-spacing: 2px;
+    color: #f0f0f0;
+    line-height: 0.95;
+    margin: 0 0 64px;
+  }
+  .dc-hl {
+    color: var(--dc-accent);
+  }
+
+  /* ── How it works ── */
+  .hiw-grid {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .hiw-left {
+    position: sticky;
+    top: 100px;
+  }
+  .hiw-left .dc-h2 {
+    margin-bottom: 24px;
+  }
+  .hiw-desc {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.7;
+    font-weight: 300;
+    margin: 0;
+  }
+  .hiw-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .hiw-step {
+    padding: 40px 48px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    transition:
+      background 0.2s,
+      border-color 0.2s;
+  }
+  .hiw-step--bg {
+    background: rgba(255, 255, 255, 0.02);
+  }
+  .hiw-step:hover {
+    background: color-mix(in srgb, var(--dc-accent) 5%, transparent);
+    border-color: color-mix(in srgb, var(--dc-accent) 20%, transparent);
+  }
+  .hiw-step-icon {
+    width: 48px;
+    height: 48px;
+    border: 2px solid var(--dc-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .hiw-step-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    color: var(--dc-accent);
+  }
+  .hiw-step-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 1px;
+    color: #f0f0f0;
+    margin: 0 0 12px;
+  }
+  .hiw-step-body {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  /* ── Benefits ── */
+  .benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .benefit-card {
+    padding: 36px 32px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(8, 8, 8, 0.6);
+    transition:
+      border-color 0.2s,
+      background 0.2s;
+  }
+  .benefit-card:hover {
+    border-color: color-mix(in srgb, var(--dc-accent) 40%, transparent);
+    background: color-mix(in srgb, var(--dc-accent) 6%, transparent);
+  }
+  .benefit-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: #f0f0f0;
+    margin: 0 0 12px;
+  }
+  .benefit-body {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.45);
+    line-height: 1.7;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  /* ── Apply / Waitlist ── */
+  .apply-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: start;
+  }
+  .apply-copy {
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.5);
+    line-height: 1.7;
+    font-weight: 300;
+    max-width: 360px;
+    margin: 0 0 40px;
+  }
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .check-item {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .check-icon {
+    color: var(--dc-accent);
+    font-weight: 700;
+    font-size: 14px;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .check-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  .apply-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+  }
+  .dc-input {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    color: #f0f0f0;
+    padding: 14px 18px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .dc-input:focus {
+    border-color: var(--dc-accent);
+  }
+  .dc-input::placeholder {
+    color: rgba(255, 255, 255, 0.35);
+  }
+  .apply-btn {
+    width: 100%;
+    background: var(--dc-accent);
+    color: var(--dc-accent-text);
+    border: none;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 18px;
+    letter-spacing: 0.4px;
+    margin-top: 8px;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 12px) 0,
+      100% 12px,
+      100% 100%,
+      12px 100%,
+      0 calc(100% - 12px)
+    );
+    transition: opacity 0.15s;
+  }
+  .apply-btn:hover {
+    opacity: 0.87;
+  }
+  .apply-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  .form-disclaimer {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.2);
+    font-weight: 300;
+    margin: 4px 0 0;
+  }
+  .cross-link-block {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .cross-link-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 0 16px;
+    letter-spacing: 0.3px;
+  }
+  .cross-link {
+    color: #ffcc00;
+    font-size: 15px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: gap 0.2s;
+  }
+  .cross-link:hover {
+    gap: 14px;
+  }
+  .form-error {
+    display: none;
+    font-size: 13px;
+    color: rgba(255, 100, 100, 0.9);
+  }
+  .form-error.show {
+    display: block;
+  }
+  .form-success {
+    display: none;
+    border: 1px solid color-mix(in srgb, var(--dc-accent) 27%, transparent);
+    background: color-mix(in srgb, var(--dc-accent) 4%, transparent);
+    padding: 40px;
+    clip-path: polygon(
+      0 0,
+      calc(100% - 16px) 0,
+      100% 16px,
+      100% 100%,
+      16px 100%,
+      0 calc(100% - 16px)
+    );
+  }
+  .form-success.show {
+    display: block;
+  }
+  .success-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    color: var(--dc-accent);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+  .success-body {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.7;
+    font-weight: 300;
+    margin: 0;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 1024px) {
+    .hiw-grid {
+      grid-template-columns: 1fr;
+      gap: 48px;
+    }
+    .hiw-left {
+      position: static;
+    }
+    .benefits-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 768px) {
+    .subtext {
+      grid-template-columns: 1fr;
+    }
+    .subtext-left {
+      padding-right: 0;
+      border-right: none;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .subtext-right {
+      padding-left: 0;
+      padding-top: 24px;
+    }
+    .apply-grid {
+      grid-template-columns: 1fr;
+      gap: 56px;
+    }
+  }
+  @media (max-width: 640px) {
+    .benefits-grid {
+      grid-template-columns: 1fr;
+    }
+    .hiw-step {
+      padding: 32px 24px;
+    }
+    .stats {
+      gap: 32px;
+    }
+  }
+</style>
+
+<script>
+  import { wireForm } from '../scripts/formSubmit';
+  wireForm('creatorForm', 'creatorSuccess', 'creatorError', 'creatorLabel', 'Als Creator anmelden');
+</script>
