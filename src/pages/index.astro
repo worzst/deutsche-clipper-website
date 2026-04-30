@@ -7,7 +7,7 @@ const benefits = [
   {
     icon: '💸',
     title: 'Pay-per-View',
-    desc: 'Keine Pauschalbeträge. Du verdienst direkt proportional zu deinen Views. Mehr Qualität = mehr Geld.',
+    desc: 'Keine Pauschalbeträge. Du verdienst direkt proportional zu deinen Views. Mehr Qualität und Reichweite = mehr Geld.',
   },
   {
     icon: '🎯',
@@ -22,7 +22,7 @@ const benefits = [
   {
     icon: '🔒',
     title: 'Rechtlich sicher',
-    desc: 'Klare Verträge, DSGVO-konform. Du bist abgesichert — von beiden Seiten.',
+    desc: 'Klare Verträge, DSGVO-konform. Du bist abgesichert von beiden Seiten.',
   },
 ];
 ---
@@ -41,7 +41,7 @@ const benefits = [
     <div class="glow"></div>
 
     <div class="hero-inner">
-      <div class="tag anim-0">Clipper Beta 2025</div>
+      <div class="tag anim-0">Clipper Beta 2026</div>
 
       <h1 class="h1 anim-1">
         CLIP IT.<br />
@@ -53,7 +53,7 @@ const benefits = [
           Werde bezahlter Clipper für die größten deutschen Creator. Du schneidest. Wir rechnen ab.
         </p>
         <p class="subtext-right">
-          Verdiene <strong>pro 1.000 Views</strong> — direkt, transparent, und ohne Bullshit.
+          Verdiene <strong>pro 1.000 Views</strong>: direkt, transparent, und ohne Bullshit.
         </p>
       </div>
 
@@ -110,7 +110,7 @@ const benefits = [
           <div class="step-num dc-hl">03</div>
           <h3 class="step-title">Geld verdienen</h3>
           <p class="step-body">
-            Pro 1.000 Views erhältst du direkt deine Vergütung — automatisch, transparent, auf dein Konto.
+            Pro 1.000 Views erhältst du direkt deine Vergütung. Automatisch und transparent auf dein Konto.
           </p>
         </div>
       </div>
@@ -123,7 +123,7 @@ const benefits = [
       <div class="benefits-header reveal">
         <h2 class="dc-h2">WARUM<br /><span class="dc-hl">DEUTSCHE CLIPPER</span>?</h2>
         <p class="benefits-desc">
-          Die erste Plattform die deutschen Clipper mit deutschen Creatorn professionell zusammenbringt.
+          Die erste Plattform, die deutsche Clipper mit deutschen Creatorn professionell zusammenbringt.
         </p>
       </div>
 
@@ -149,8 +149,8 @@ const benefits = [
           <div class="dc-label">Limitierte Beta-Plätze</div>
           <h2 class="dc-h2 dc-h2--lg">SICHERE DEINEN<br /><span class="dc-hl">PLATZ</span></h2>
           <p class="waitlist-copy">
-            Sei einer der ersten Clipper auf der Plattform. Beta-Nutzer erhalten exklusiven Zugang zu Premium-Creatorn
-            und erhöhten Vergütungen.
+            Sei einer der ersten Clipper auf der Plattform beim Launch. Beta-Nutzer erhalten exklusiven Zugang zu
+            Premium-Creatorn und erhöhten Vergütungen.
           </p>
         </div>
 
@@ -159,12 +159,10 @@ const benefits = [
             <input type="text" name="_hp" class="dc-hp" tabindex="-1" autocomplete="off" />
             <input type="hidden" name="_source" value="Clipper Waitlist" />
 
-            <div class="email-group">
-              <input type="email" name="email" placeholder="deine@email.de" required class="email-input" />
-              <button type="submit" class="email-btn">
-                <span id="clipperLabel">Als Clipper anmelden</span>
-              </button>
-            </div>
+            <input type="email" name="email" placeholder="deine@email.de" required class="email-input" />
+            <button type="submit" class="email-btn">
+              <span id="clipperLabel">Als Clipper anmelden</span>
+            </button>
 
             <p class="form-disclaimer">Kein Spam. Keine Kosten. Jederzeit abmeldbar.</p>
 
@@ -512,53 +510,44 @@ const benefits = [
   .waitlist-form {
     position: relative;
   }
-  .email-group {
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    background: rgba(255, 255, 255, 0.03);
-    padding: 6px 6px 6px 20px;
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
-    transition: border-color 0.2s;
-  }
-  .email-group:focus-within {
-    border-color: var(--dc-accent);
-  }
   .email-input {
-    flex: 1;
-    background: transparent;
-    border: none;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     outline: none;
     font-family: 'DM Sans', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     color: #f0f0f0;
-    padding: 12px 0;
-    min-width: 0;
+    padding: 14px 18px;
+    transition: border-color 0.2s;
+  }
+  .email-input:focus {
+    border-color: var(--dc-accent);
   }
   .email-input::placeholder {
     color: rgba(255, 255, 255, 0.35);
   }
   .email-btn {
+    width: 100%;
     background: var(--dc-accent);
     color: var(--dc-accent-text);
     border: none;
     cursor: pointer;
     font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-    padding: 14px 28px;
-    letter-spacing: 0.3px;
-    white-space: nowrap;
+    padding: 18px;
+    letter-spacing: 0.4px;
+    margin-top: 12px;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     transition: opacity 0.15s;
-    flex-shrink: 0;
   }
   .email-btn:hover {
     opacity: 0.85;
   }
   .email-btn:disabled {
     opacity: 0.7;
-    cursor: default;
+    cursor: not-allowed;
   }
   .form-disclaimer {
     font-size: 12px;
