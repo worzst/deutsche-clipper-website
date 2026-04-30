@@ -7,9 +7,7 @@ interface Props {
 const { page } = Astro.props;
 
 const crossLink =
-  page === 'clipper'
-    ? { href: '/creator', label: 'Für Creator →' }
-    : { href: '/', label: 'Für Clipper →' };
+  page === 'clipper' ? { href: '/creator', label: 'Für Creator →' } : { href: '/', label: 'Für Clipper →' };
 ---
 
 <header class="dc-nav" id="dcNav">

@@ -14,13 +14,8 @@ const { title } = Astro.props;
   <Nav page="clipper" />
   <main class="legal-main">
     <div class="legal-inner">
-      <a
-        href="/"
-        class="inline-block text-[13px] text-mute underline underline-offset-[3px] mb-8 hover:text-ink transition-colors"
-      >
-        ← Zurück
-      </a>
-      <h1 class="text-[clamp(28px,4vw,44px)] font-bold text-ink m-0 mb-10">{title}</h1>
+      <a href="/" class="legal-back">← Zurück</a>
+      <h1 class="legal-title">{title}</h1>
       <div class="legal-content">
         <slot />
       </div>
@@ -38,6 +33,24 @@ const { title } = Astro.props;
     max-width: 720px;
     margin: 0 auto;
     padding: 0 var(--gutter);
+  }
+  .legal-back {
+    display: inline-block;
+    font-size: 13px;
+    color: var(--color-mute);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    margin-bottom: 32px;
+    transition: color 0.2s;
+  }
+  .legal-back:hover {
+    color: var(--color-ink);
+  }
+  .legal-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 700;
+    color: var(--color-ink);
+    margin: 0 0 40px;
   }
   .legal-content :global(h2) {
     font-size: 18px;

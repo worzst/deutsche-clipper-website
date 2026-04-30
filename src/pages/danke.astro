@@ -7,26 +7,68 @@ import { SITE_NAME } from '../config';
 
 <Layout title={`Vielen Dank — ${SITE_NAME}`} noindex={true} accentColor="#FFCC00" accentTextColor="#080808">
   <Nav page="clipper" />
-  <section class="min-h-[70vh] flex items-center justify-center px-[var(--gutter)] py-[var(--section-pad)]">
-    <div class="max-w-[480px] text-center">
-      <div
-        class="w-16 h-16 rounded-full bg-success text-ink flex items-center justify-center text-[28px] font-bold mx-auto mb-8"
-      >
-        ✓
-      </div>
-      <h1 class="text-[clamp(28px,4vw,44px)] font-extrabold tracking-[-0.03em] text-ink m-0 mb-4">
-        Vielen Dank!
-      </h1>
-      <p class="text-[17px] text-mute leading-relaxed m-0 mb-10">
-        Wir haben deine Anmeldung erhalten und melden uns in Kürze bei dir.
-      </p>
-      <a
-        href="/"
-        class="inline-flex items-center leading-none px-7 py-[14px] rounded-full bg-accent text-[var(--dc-accent-text)] text-[15px] font-semibold hover:opacity-85 transition-opacity"
-      >
-        Zurück zur Startseite
-      </a>
+  <section class="page-center">
+    <div class="page-box">
+      <div class="success-check">✓</div>
+      <h1 class="page-title">Vielen Dank!</h1>
+      <p class="page-body">Wir haben deine Anmeldung erhalten und melden uns in Kürze bei dir.</p>
+      <a href="/" class="btn-home">Zurück zur Startseite</a>
     </div>
   </section>
   <Footer page="clipper" />
 </Layout>
+
+<style>
+  .page-center {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--section-pad) var(--gutter);
+  }
+  .page-box {
+    max-width: 480px;
+    text-align: center;
+  }
+  .success-check {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--color-success);
+    color: var(--color-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 auto 32px;
+  }
+  .page-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    color: var(--color-ink);
+    margin: 0 0 16px;
+  }
+  .page-body {
+    font-size: 17px;
+    color: var(--color-mute);
+    line-height: 1.6;
+    margin: 0 0 40px;
+  }
+  .btn-home {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    background: var(--dc-accent);
+    color: var(--dc-accent-text);
+    font-size: 15px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+  .btn-home:hover {
+    opacity: 0.85;
+  }
+</style>

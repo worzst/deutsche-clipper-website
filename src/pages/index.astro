@@ -25,7 +25,6 @@ const benefits = [
     desc: 'Klare Verträge, DSGVO-konform. Du bist abgesichert — von beiden Seiten.',
   },
 ];
-
 ---
 
 <Layout
@@ -96,17 +95,14 @@ const benefits = [
           <div class="step-ghost">01</div>
           <div class="step-num dc-hl">01</div>
           <h3 class="step-title">Creator aussuchen</h3>
-          <p class="step-body">
-            Durchsuche Creator, die aktiv Clipper suchen. Bewirb dich kostenlos auf ihre Kanäle.
-          </p>
+          <p class="step-body">Durchsuche Creator, die aktiv Clipper suchen. Bewirb dich kostenlos auf ihre Kanäle.</p>
         </div>
         <div class="step step--bg reveal" data-delay="100">
           <div class="step-ghost">02</div>
           <div class="step-num dc-hl">02</div>
           <h3 class="step-title">Clips erstellen</h3>
           <p class="step-body">
-            Schneid die besten Momente aus dem Content. Short-Form für TikTok, Reels und YouTube
-            Shorts.
+            Schneid die besten Momente aus dem Content. Short-Form für TikTok, Reels und YouTube Shorts.
           </p>
         </div>
         <div class="step reveal" data-delay="200">
@@ -114,8 +110,7 @@ const benefits = [
           <div class="step-num dc-hl">03</div>
           <h3 class="step-title">Geld verdienen</h3>
           <p class="step-body">
-            Pro 1.000 Views erhältst du direkt deine Vergütung — automatisch, transparent, auf dein
-            Konto.
+            Pro 1.000 Views erhältst du direkt deine Vergütung — automatisch, transparent, auf dein Konto.
           </p>
         </div>
       </div>
@@ -128,8 +123,7 @@ const benefits = [
       <div class="benefits-header reveal">
         <h2 class="dc-h2">WARUM<br /><span class="dc-hl">DEUTSCHE CLIPPER</span>?</h2>
         <p class="benefits-desc">
-          Die erste Plattform die deutschen Clipper mit deutschen Creatorn professionell
-          zusammenbringt.
+          Die erste Plattform die deutschen Clipper mit deutschen Creatorn professionell zusammenbringt.
         </p>
       </div>
 
@@ -155,8 +149,8 @@ const benefits = [
           <div class="dc-label">Limitierte Beta-Plätze</div>
           <h2 class="dc-h2 dc-h2--lg">SICHERE DEINEN<br /><span class="dc-hl">PLATZ</span></h2>
           <p class="waitlist-copy">
-            Sei einer der ersten Clipper auf der Plattform. Beta-Nutzer erhalten exklusiven Zugang
-            zu Premium-Creatorn und erhöhten Vergütungen.
+            Sei einer der ersten Clipper auf der Plattform. Beta-Nutzer erhalten exklusiven Zugang zu Premium-Creatorn
+            und erhöhten Vergütungen.
           </p>
         </div>
 
@@ -166,13 +160,7 @@ const benefits = [
             <input type="hidden" name="_source" value="Clipper Waitlist" />
 
             <div class="email-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="deine@email.de"
-                required
-                class="email-input"
-              />
+              <input type="email" name="email" placeholder="deine@email.de" required class="email-input" />
               <button type="submit" class="email-btn">
                 <span id="clipperLabel">Als Clipper anmelden</span>
               </button>
@@ -185,16 +173,13 @@ const benefits = [
               <a href="/creator" class="cross-link">Zur Creator-Anmeldung →</a>
             </div>
 
-            <p id="clipperError" class="form-error">
-              Etwas ist schiefgelaufen. Bitte versuche es erneut.
-            </p>
+            <p id="clipperError" class="form-error">Etwas ist schiefgelaufen. Bitte versuche es erneut.</p>
           </form>
 
           <div id="clipperSuccess" class="form-success">
             <div class="success-title">🎉 DU BIST DRIN!</div>
             <p class="success-body">
-              Wir haben dich auf die Waitlist gesetzt. Du erhältst eine E-Mail sobald wir die Beta
-              für Clipper öffnen.
+              Wir haben dich auf die Waitlist gesetzt. Du erhältst eine E-Mail sobald wir die Beta für Clipper öffnen.
             </p>
           </div>
         </div>
@@ -231,11 +216,7 @@ const benefits = [
     right: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(
-      circle,
-      color-mix(in srgb, var(--dc-accent) 13%, transparent) 0%,
-      transparent 70%
-    );
+    background: radial-gradient(circle, color-mix(in srgb, var(--dc-accent) 13%, transparent) 0%, transparent 70%);
     pointer-events: none;
     z-index: 0;
     animation: dc-pulse 4s ease-in-out infinite;
@@ -333,14 +314,7 @@ const benefits = [
     font-size: 16px;
     font-weight: 700;
     letter-spacing: 0.5px;
-    clip-path: polygon(
-      0 0,
-      calc(100% - 12px) 0,
-      100% 12px,
-      100% 100%,
-      12px 100%,
-      0 calc(100% - 12px)
-    );
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
     transition: opacity 0.15s;
     display: inline-block;
   }
@@ -544,14 +518,7 @@ const benefits = [
     display: flex;
     gap: 8px;
     align-items: center;
-    clip-path: polygon(
-      0 0,
-      calc(100% - 16px) 0,
-      100% 16px,
-      100% 100%,
-      16px 100%,
-      0 calc(100% - 16px)
-    );
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
     transition: border-color 0.2s;
   }
   .email-group:focus-within {
@@ -635,14 +602,7 @@ const benefits = [
     border: 1px solid color-mix(in srgb, var(--dc-accent) 27%, transparent);
     background: color-mix(in srgb, var(--dc-accent) 4%, transparent);
     padding: 40px;
-    clip-path: polygon(
-      0 0,
-      calc(100% - 16px) 0,
-      100% 16px,
-      100% 100%,
-      16px 100%,
-      0 calc(100% - 16px)
-    );
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 16px 100%, 0 calc(100% - 16px));
   }
   .form-success.show {
     display: block;

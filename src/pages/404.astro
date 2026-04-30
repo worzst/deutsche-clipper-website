@@ -7,20 +7,65 @@ import { SITE_NAME } from '../config';
 
 <Layout title={`Seite nicht gefunden — ${SITE_NAME}`} noindex={true} accentColor="#FFCC00" accentTextColor="#080808">
   <Nav page="clipper" />
-  <section class="min-h-[70vh] flex items-center justify-center px-[var(--gutter)] py-[var(--section-pad)]">
-    <div class="max-w-[480px] text-center">
-      <span class="block font-mono text-[12px] font-semibold uppercase tracking-[0.1em] text-accent mb-6">404</span>
-      <h1 class="text-[clamp(32px,5vw,56px)] font-extrabold tracking-[-0.04em] text-ink m-0 mb-4">
-        Diese Seite gibt es nicht.
-      </h1>
-      <p class="text-[17px] text-mute leading-relaxed m-0 mb-10">Die URL existiert nicht — aber wir schon.</p>
-      <a
-        href="/"
-        class="inline-flex items-center leading-none px-7 py-[14px] rounded-full bg-accent text-white text-[15px] font-semibold hover:opacity-85 transition-opacity"
-      >
-        Zur Startseite →
-      </a>
+  <section class="page-center">
+    <div class="page-box">
+      <span class="error-code">404</span>
+      <h1 class="error-title">Diese Seite gibt es nicht.</h1>
+      <p class="error-body">Die URL existiert nicht — aber wir schon.</p>
+      <a href="/" class="btn-back">Zur Startseite →</a>
     </div>
   </section>
   <Footer page="clipper" />
 </Layout>
+
+<style>
+  .page-center {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--section-pad) var(--gutter);
+  }
+  .page-box {
+    max-width: 480px;
+    text-align: center;
+  }
+  .error-code {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-accent);
+    margin-bottom: 24px;
+  }
+  .error-title {
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--color-ink);
+    margin: 0 0 16px;
+  }
+  .error-body {
+    font-size: 17px;
+    color: var(--color-mute);
+    line-height: 1.6;
+    margin: 0 0 40px;
+  }
+  .btn-back {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    padding: 14px 28px;
+    border-radius: 9999px;
+    background: var(--dc-accent);
+    color: var(--dc-accent-text);
+    font-size: 15px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+  }
+  .btn-back:hover {
+    opacity: 0.85;
+  }
+</style>

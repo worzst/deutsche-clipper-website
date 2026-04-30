@@ -48,8 +48,8 @@ Simple dark footer. Logo + nav links (cross-link to other page, Impressum, Daten
 
 ```typescript
 interface Props {
-  size?: number;    // default 28 — SVG height in px
-  linkTo?: string;  // default '/'
+  size?: number; // default 28 — SVG height in px
+  linkTo?: string; // default '/'
 }
 ```
 
@@ -63,12 +63,13 @@ No props. Full-width scrolling ticker banner for the Creator page. Items alterna
 
 ## DC Design Tokens
 
-| CSS Var | Value | Usage |
-|---------|-------|-------|
-| `--dc-accent` | `#FFCC00` (clipper) / `#E30613` (creator) | Accent color per page, set on body |
-| `--dc-accent-text` | `#080808` (clipper) / `#ffffff` (creator) | Text on accent bg |
+| CSS Var            | Value                                     | Usage                              |
+| ------------------ | ----------------------------------------- | ---------------------------------- |
+| `--dc-accent`      | `#FFCC00` (clipper) / `#E30613` (creator) | Accent color per page, set on body |
+| `--dc-accent-text` | `#080808` (clipper) / `#ffffff` (creator) | Text on accent bg                  |
 
 Global dark theme tokens in `@theme` in `global.css`:
+
 - `--color-bg: #080808`
 - `--color-ink: #f0f0f0`
 - `--color-mute: rgba(255,255,255,0.55)`
@@ -84,6 +85,7 @@ Keyframes in `@layer base` in `global.css`: `dc-fade-up`, `dc-pulse`, `dc-ticker
 ## DC Page Sections (CSS patterns used in pages)
 
 ### Hero
+
 - `min-height: 100vh`, grid background (60×60px CSS grid lines at ~2.5% opacity)
 - Radial gradient glow using `color-mix(in srgb, var(--dc-accent) 13%, transparent)` animated with `dc-pulse`
 - Staggered `dc-fade-up` animations on hero elements (`.anim-0` through `.anim-4`)
@@ -91,21 +93,26 @@ Keyframes in `@layer base` in `global.css`: `dc-fade-up`, `dc-pulse`, `dc-ticker
 - Creator page: badge with animated dot, `MEHR VIEWS. / WENIGER (outlined in red) / AUFWAND. (red)` + diagonal stripe bg
 
 ### Cut-corner buttons
+
 ```css
 clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
 ```
+
 Used on primary CTAs and form submit buttons.
 
 ### Section headings (DC style)
+
 ```html
 <div class="dc-label">Label text</div>
 <h2 class="dc-h2">HEADING<br /><span class="dc-hl">ACCENT PART</span></h2>
 ```
+
 `dc-label`: 12px DM Sans, 700 weight, 4px letter-spacing, accent color, uppercase.
 `dc-h2`: Bebas Neue, `clamp(44–48px, 5–6vw, 72–80px)`, line-height 0.95.
 `dc-hl`: `color: var(--dc-accent)`.
 
 ### Benefit cards hover
+
 ```css
 .card:hover {
   border-color: color-mix(in srgb, var(--dc-accent) 40%, transparent);
@@ -114,6 +121,7 @@ Used on primary CTAs and form submit buttons.
 ```
 
 ### Waitlist forms
+
 Clipper: combined email+button in a clip-path container with `:focus-within` border animation.
 Creator: stacked inputs (`.dc-input`) with sharp borders + full-width cut-corner submit button.
 Both: `id="...Form"`, `id="...Success"`, `id="...Error"`, `id="...Label"` for `wireForm()`.
@@ -202,14 +210,14 @@ Tokens live in the `@theme {}` block in `src/styles/global.css`. This is Tailwin
 
 ```css
 @theme {
-  --color-bg: #f8f8f6;       /* page background */
-  --color-paper: #ffffff;    /* card / nav / banner backgrounds */
-  --color-ink: #111111;      /* primary text, dark backgrounds */
-  --color-mute: #666666;     /* secondary text */
-  --color-accent: #1a1a8c;   /* primary CTA, links, highlights */
+  --color-bg: #f8f8f6; /* page background */
+  --color-paper: #ffffff; /* card / nav / banner backgrounds */
+  --color-ink: #111111; /* primary text, dark backgrounds */
+  --color-mute: #666666; /* secondary text */
+  --color-accent: #1a1a8c; /* primary CTA, links, highlights */
   --color-accent-2: #e85c00; /* secondary highlight */
-  --color-success: #6ee7b7;  /* form success icon */
-  --color-error: #ff4d4d;    /* form error text */
+  --color-success: #6ee7b7; /* form success icon */
+  --color-error: #ff4d4d; /* form error text */
   --font-sans: system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Courier New', Courier, monospace;
 }
@@ -256,6 +264,7 @@ Tailwind v4 uses CSS cascade layers internally:
 Use **Tailwind utilities** for: spacing, typography, colors, flex/grid layout, responsive prefixes, hover/focus states — anything that maps to a single CSS property.
 
 Use **scoped `<style>`** for:
+
 - Complex animations with intermediate states (`max-height` transitions for FAQ accordion)
 - CSS custom property theming across light/dark variants (`::placeholder`, `--lf-field-border`)
 - Container max-width + gutter layout inside components (`.footer-inner`, `.nav-inner`) where mixing with global `.inner` would cause cascade conflicts
@@ -332,12 +341,12 @@ Observer is wired in `Layout.astro` — works on every page automatically.
 
 ```typescript
 interface Props {
-  label?: string;           // mono uppercase label above heading
-  heading: string;          // h2 text
-  headingEm?: string;       // italic em on a new line (accent-colored)
+  label?: string; // mono uppercase label above heading
+  heading: string; // h2 text
+  headingEm?: string; // italic em on a new line (accent-colored)
   align?: 'left' | 'center'; // default 'center'
   size?: 'sm' | 'md' | 'lg'; // default 'md'
-  mb?: number;              // margin-bottom px, default 56
+  mb?: number; // margin-bottom px, default 56
 }
 ```
 
@@ -353,15 +362,15 @@ type Field =
   | { type: 'select'; name: string; options: string[]; placeholder?: string };
 
 interface Props {
-  id: string;               // prefix for IDs: {id}Form, {id}Success, {id}Error, {id}Label
-  source: string;           // hidden _source field — appears in email subject line
+  id: string; // prefix for IDs: {id}Form, {id}Success, {id}Error, {id}Label
+  source: string; // hidden _source field — appears in email subject line
   fields: Field[];
-  action?: string;          // default '/contact' — form.action DOM property used, returns absolute URL
-  submitLabel?: string;     // default 'Absenden'
+  action?: string; // default '/contact' — form.action DOM property used, returns absolute URL
+  submitLabel?: string; // default 'Absenden'
   submitVariant?: 'accent' | 'ink'; // button color
   successTitle?: string;
   successBody?: string;
-  errorHtml?: string;       // supports HTML (e.g. mailto fallback link)
+  errorHtml?: string; // supports HTML (e.g. mailto fallback link)
   theme?: 'light' | 'dark'; // field color scheme
   turnstileTheme?: 'light' | 'dark' | 'auto'; // Turnstile widget theme, default 'auto'
 }

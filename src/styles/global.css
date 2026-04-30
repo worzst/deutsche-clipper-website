@@ -1,7 +1,5 @@
-@import 'tailwindcss';
-
 /* ── Design tokens ── */
-@theme {
+:root {
   --color-bg: #080808;
   --color-paper: #141414;
   --color-ink: #f0f0f0;
@@ -12,10 +10,6 @@
   --color-error: #ff4d4d;
   --font-sans: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'Courier New', Courier, monospace;
-}
-
-/* Complex values that can't live in @theme */
-:root {
   --line: rgba(255, 255, 255, 0.08);
   --max-width: 1280px;
   --section-pad: clamp(64px, 9vw, 112px);
@@ -27,6 +21,11 @@
 
 /* ── Base element resets ── */
 @layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
   html {
     scroll-behavior: smooth;
   }
@@ -35,6 +34,7 @@
     color: var(--color-ink);
     font-family: var(--font-sans);
     overflow-x: hidden;
+    margin: 0;
   }
   a {
     text-decoration: none;
@@ -44,6 +44,20 @@
     list-style: none;
     padding: 0;
     margin: 0;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+  }
+  p {
+    margin: 0;
+  }
+  button {
+    font-family: inherit;
   }
 
   /* DC hero animations */
@@ -76,11 +90,7 @@
   }
 }
 
-/*
-  ── Shared layout classes ──
-  In @layer components so Tailwind utilities (@layer utilities) can always
-  override them when needed.
-*/
+/* ── Shared layout classes ── */
 @layer components {
   .inner {
     max-width: var(--max-width);
@@ -90,43 +100,6 @@
 
   .section {
     padding: var(--section-pad) 0;
-  }
-
-  .section-alt {
-    background: color-mix(in srgb, var(--color-accent) 4%, var(--color-bg));
-  }
-
-  .hero-gradient {
-    background: linear-gradient(
-      135deg,
-      var(--color-accent) 0%,
-      color-mix(in srgb, var(--color-accent) 60%, #000) 100%
-    );
-  }
-
-  .grid-2 {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-  }
-
-  .grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-  }
-
-  @media (max-width: 1024px) {
-    .grid-3 {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-
-  @media (max-width: 640px) {
-    .grid-2,
-    .grid-3 {
-      grid-template-columns: 1fr;
-    }
   }
 
   /* ── Reveal animation — driven by IntersectionObserver in Layout.astro ── */

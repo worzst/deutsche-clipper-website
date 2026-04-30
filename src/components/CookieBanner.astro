@@ -4,35 +4,86 @@ import { SITE_KEY } from '../config';
 const CONSENT_KEY = `${SITE_KEY}_consent`;
 ---
 
-<div
-  id="cookieBanner"
-  class="fixed bottom-0 left-0 right-0 z-[200] bg-paper border-t border-[var(--line)] px-8 py-4 hidden items-center justify-between gap-6 flex-wrap"
-  role="dialog"
-  aria-label="Cookie-Einstellungen"
->
-  <p class="m-0 text-[13px] text-mute leading-relaxed">
+<div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie-Einstellungen">
+  <p class="cookie-text">
     Wir nutzen Cookies zur Analyse und Optimierung unserer Website.
-    <a href="/datenschutz" class="text-ink underline underline-offset-[3px]">Mehr erfahren</a>
+    <a href="/datenschutz" class="cookie-link">Mehr erfahren</a>
   </p>
-  <div class="flex gap-2.5 shrink-0">
-    <button
-      id="cookieDecline"
-      class="inline-flex items-center leading-none px-5 py-2.5 rounded-full text-[13px] font-semibold bg-transparent text-mute border border-[var(--line)] cursor-pointer hover:border-ink hover:text-ink transition-colors"
-    >
-      Ablehnen
-    </button>
-    <button
-      id="cookieAccept"
-      class="inline-flex items-center leading-none px-5 py-2.5 rounded-full text-[13px] font-semibold bg-accent text-[var(--dc-accent-text)] border-none cursor-pointer hover:opacity-85 transition-opacity"
-    >
-      Akzeptieren
-    </button>
+  <div class="cookie-actions">
+    <button id="cookieDecline" class="btn-decline">Ablehnen</button>
+    <button id="cookieAccept" class="btn-accept">Akzeptieren</button>
   </div>
 </div>
 
 <style>
+  .cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 200;
+    background: var(--color-paper);
+    border-top: 1px solid var(--line);
+    padding: 16px 32px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .cookie-banner.show {
+    display: flex;
+  }
+  .cookie-text {
+    font-size: 13px;
+    color: var(--color-mute);
+    line-height: 1.5;
+    margin: 0;
+  }
+  .cookie-link {
+    color: var(--color-ink);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .cookie-actions {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  .btn-decline,
+  .btn-accept {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1;
+    padding: 10px 20px;
+    border-radius: 9999px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: opacity 0.2s;
+  }
+  .btn-decline {
+    background: transparent;
+    color: var(--color-mute);
+    border: 1px solid var(--line);
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+  }
+  .btn-decline:hover {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+  }
+  .btn-accept {
+    background: var(--dc-accent);
+    color: var(--dc-accent-text);
+    border: none;
+  }
+  .btn-accept:hover {
+    opacity: 0.85;
+  }
   @media (max-width: 480px) {
-    #cookieBanner {
+    .cookie-banner {
       padding: 16px;
       flex-direction: column;
       align-items: flex-start;
@@ -59,20 +110,17 @@ const CONSENT_KEY = `${SITE_KEY}_consent`;
   if (stored === 'granted') {
     updateConsent(true);
   } else if (!stored) {
-    banner.classList.remove('hidden');
-    banner.classList.add('flex');
+    banner.classList.add('show');
   }
 
   document.getElementById('cookieAccept').addEventListener('click', () => {
     localStorage.setItem(CONSENT_KEY, 'granted');
     updateConsent(true);
-    banner.classList.add('hidden');
-    banner.classList.remove('flex');
+    banner.classList.remove('show');
   });
   document.getElementById('cookieDecline').addEventListener('click', () => {
     localStorage.setItem(CONSENT_KEY, 'denied');
     updateConsent(false);
-    banner.classList.add('hidden');
-    banner.classList.remove('flex');
+    banner.classList.remove('show');
   });
 </script>

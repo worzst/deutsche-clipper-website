@@ -16,10 +16,8 @@
   "dependencies": {
     "@astrojs/sitemap": "^3.7.2",
     "@iconify-json/tabler": "^1.2.33",
-    "@tailwindcss/vite": "^4.2.4",
     "astro": "^6.1.8",
-    "astro-icon": "^1.1.5",
-    "tailwindcss": "^4.2.4"
+    "astro-icon": "^1.1.5"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
