@@ -12,8 +12,8 @@ const { title } = Astro.props;
 
 <Layout title={`${title} — ${SITE_NAME}`} noindex={true} accentColor="#FFCC00" accentTextColor="#080808">
   <Nav page="clipper" />
-  <main class="pb-24">
-    <div class="legal-inner pt-24">
+  <main class="legal-main">
+    <div class="legal-inner">
       <a
         href="/"
         class="inline-block text-[13px] text-mute underline underline-offset-[3px] mb-8 hover:text-ink transition-colors"
@@ -30,6 +30,10 @@ const { title } = Astro.props;
 </Layout>
 
 <style>
+  .legal-main {
+    padding-top: calc(64px + 48px);
+    padding-bottom: 96px;
+  }
   .legal-inner {
     max-width: 720px;
     margin: 0 auto;
