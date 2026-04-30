@@ -271,8 +271,9 @@ const benefits = [
     color: var(--dc-accent);
   }
   .h1-outline {
-    -webkit-text-stroke: 2px #f0f0f0;
-    color: transparent;
+    -webkit-text-stroke: clamp(4px, 0.44vw, 8px) #f0f0f0;
+    color: #080808;
+    paint-order: stroke fill;
   }
 
   .subtext {
