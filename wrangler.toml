@@ -1,0 +1,7 @@
+name = "deutsche-clipper"
+pages_build_output_dir = "dist"
+
+[[d1_databases]]
+binding = "deutsche_clipper_waitlist"
+database_name = "deutsche-clipper-waitlist"
+database_id = "a5e3e8e9-a894-4570-9194-09c3ce11aad9"
