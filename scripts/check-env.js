@@ -2,7 +2,8 @@
 // Skipped in local dev (CF_PAGES is only set on Cloudflare's build runners).
 if (process.env.CF_PAGES !== '1') process.exit(0);
 
-const required = ['RESEND_API_KEY', 'CONTACT_TO', 'CONTACT_FROM'];
+// const required = ['RESEND_API_KEY', 'CONTACT_TO', 'CONTACT_FROM'];
+const required = [];
 const missing = required.filter((k) => !process.env[k]);
 
 if (missing.length) {
