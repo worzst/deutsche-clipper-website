@@ -26,8 +26,8 @@ export function wireForm(
         body: JSON.stringify(data),
       });
       if (res.ok) {
-        form.classList.add('hidden');
-        success.classList.add('show');
+        form.style.display = 'none';
+        success.style.display = 'block';
         window.dataLayer?.push({ event: 'form_submit_success' });
       } else {
         throw new Error('server');
