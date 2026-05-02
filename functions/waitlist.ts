@@ -1,5 +1,5 @@
 interface Env {
-  DB: D1Database;
+  deutsche_clipper_waitlist: D1Database;
 }
 
 export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
@@ -26,7 +26,7 @@ export const onRequestPost: PagesFunction<Env> = async ({ request, env }) => {
   const platform = data.platform?.trim() || null;
 
   try {
-    await env.DB.prepare(
+    await env.deutsche_clipper_waitlist.prepare(
       'INSERT OR IGNORE INTO waitlist (email, source, name, platform) VALUES (?, ?, ?, ?)',
     )
       .bind(email, source, name, platform)
